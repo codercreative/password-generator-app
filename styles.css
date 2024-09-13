@@ -1,0 +1,113 @@
+/* GENERAL */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+:root {
+  --red: hsl(0, 91%, 63%);
+  --orange: hsl(13, 95%, 66%);
+  --yellow: hsl(42, 91%, 68%);
+  --green: hsl(127, 100%, 82%);
+  --almost-white: hsl(252, 11%, 91%);
+  --grey: hsl(251, 9%, 53%);
+  --dark-grey: hsl(248, 10%, 15%);
+  --very-dark-grey: hsl(248, 15%, 11%);
+}
+
+body {
+  font-family: "JetBrains Mono", system-ui;
+  background-color: var(--very-dark-grey);
+  color: var(--almost-white);
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  color: var(--grey);
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-pw-section,
+.generate-pw-section {
+  min-width: 450px;
+  background-color: var(--dark-grey);
+  padding: 1em;
+}
+
+/* USER PASSWORD SECTION */
+
+.user-pw-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.copy-btn {
+  border: none;
+  background-color: var(--dark-grey);
+  cursor: pointer;
+}
+
+/* GENERATE PASSWORD SECTION */
+
+.char-length-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.range {
+  width: 100%;
+}
+
+.pw-strength-wrapper {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--very-dark-grey);
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.strength-title {
+  text-transform: uppercase;
+  color: var(--grey);
+  font-size: 0.8rem;
+}
+
+.dynamic-strength-title {
+  color: var(--almost-white);
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.generate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.5em;
+  background-color: var(--green);
+  text-transform: uppercase;
+  font-weight: 700;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.generate-btn img {
+  margin-left: 0.5em;
+}
+
+.generate-btn:hover {
+  background-color: var(--very-dark-grey);
+  color: var(--green);
+  border: 2px solid var(--green);
+}

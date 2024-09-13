@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+
+    <title>Frontend Mentor | Password generator app</title>
+  </head>
+  <body>
+    <header>
+      <h1>Password Generator</h1>
+    </header>
+    <main>
+      <section class="user-pw-section">
+        <h2>P4$5W0rD!</h2>
+        <button class="copy-btn">
+          <img
+            class="svg"
+            src="assets/images/icon-copy.svg"
+            alt="Copy button"
+          />
+        </button>
+      </section>
+      <section class="generate-pw-section">
+        <div class="char-length-wrapper">
+          <h3>Character Length</h3>
+          <p>10</p>
+        </div>
+        <label for="range"></label>
+        <input
+          type="range"
+          id="range"
+          class="range"
+          name="range"
+          min="0"
+          max="20"
+        />
+
+        <ul>
+          <li>Include Uppercase Letters</li>
+          <li>Include Lowercase Letters</li>
+          <li>Include Numbers</li>
+          <li>Include Symbols</li>
+        </ul>
+        <div class="pw-strength-wrapper">
+          <h4 class="strength-title">Strength</h4>
+          <h5 class="dynamic-strength-title">Medium</h5>
+        </div>
+        <button class="generate-btn">
+          Generate
+          <img src="assets/images/icon-arrow-right.svg" alt="" />
+        </button>
+      </section>
+    </main>
+  </body>
+</html>
