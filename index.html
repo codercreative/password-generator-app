@@ -33,9 +33,11 @@
         </button>
       </section>
       <section class="generate-pw-section">
-        <div class="char-length-wrapper">
-          <h3>Character Length</h3>
-          <p>10</p>
+        <div class="pw-length-wrapper">
+          <h3>
+            Character Length<span class="min-max"> (min: 4, max: 20) </span>
+          </h3>
+          <p id="pw-length" class="pw-length">10</p>
         </div>
         <label for="range"></label>
         <input
@@ -43,7 +45,7 @@
           id="range"
           class="range"
           name="range"
-          min="0"
+          min="4"
           max="20"
         />
         <div class="checkbox-wrapper">

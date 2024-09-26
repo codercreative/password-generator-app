@@ -39,7 +39,7 @@ main {
 
 .user-pw-section,
 .generate-pw-section {
-  min-width: 450px;
+  min-width: 300px;
   background-color: var(--dark-grey);
   padding: 1em;
 }
@@ -60,21 +60,38 @@ main {
 
 /* GENERATE PASSWORD SECTION */
 
-.char-length-wrapper {
+.pw-length-wrapper {
   display: flex;
   justify-content: space-between;
 }
 
+.min-max {
+  font-size: 0.8rem;
+}
+
+.pw-length {
+  color: var(--green);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
 .range {
   width: 100%;
+  margin-bottom: 1em;
+}
+
+.checkbox-wrapper input {
+  font-size: 1rem;
+  margin: 0.8em 0;
 }
 
 .pw-strength-wrapper {
   display: flex;
   justify-content: space-between;
   background-color: var(--very-dark-grey);
-  padding: 1em;
-  margin: 1em 0;
+  padding: 1.5em;
+  margin: 1.5em 0;
 }
 
 .strength-title {
@@ -90,6 +107,7 @@ main {
 }
 
 .generate-btn {
+  height: 4.0625em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,4 +128,12 @@ main {
   background-color: var(--very-dark-grey);
   color: var(--green);
   border: 2px solid var(--green);
+}
+
+@media (width >= 768px) {
+  .user-pw-section,
+  .generate-pw-section {
+    min-width: 540px;
+    padding: 2em;
+  }
 }
