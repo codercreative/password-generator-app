@@ -23,7 +23,7 @@
     </header>
     <main>
       <section class="user-pw-section">
-        <h2>P4$5W0rD!</h2>
+        <h2 class="generated-password" id="generated-password">P4$5W0rD!</h2>
         <button class="copy-btn">
           <img
             class="svg"
@@ -32,42 +32,54 @@
           />
         </button>
       </section>
+
       <section class="generate-pw-section">
-        <div class="pw-length-wrapper">
+        <div class="char-length-wrapper">
           <h3>
-            Character Length<span class="min-max"> (min: 4, max: 20) </span>
+            <label for="char-range">Character Length</label>
           </h3>
-          <p id="pw-length" class="pw-length">10</p>
+          <p id="char-number" class="char-number">10</p>
         </div>
-        <label for="range"></label>
         <input
           type="range"
-          id="range"
-          class="range"
-          name="range"
-          min="4"
+          id="char-range"
+          class="char-range"
+          name="char-range"
+          value="10"
+          min="6"
           max="20"
         />
+
         <div class="checkbox-wrapper">
           <input type="checkbox" id="uppercase" name="uppercase" />
           <label for="uppercase">Include Uppercase Letters </label>
           <br />
           <input type="checkbox" id="lowercase" name="lowercase" />
-          <label for="lowercase">Include Uppercase Letters</label>
+          <label for="lowercase">Include Lowercase Letters</label>
           <br />
           <input type="checkbox" id="numbers" name="numbers" />
           <label for="numbers">Include Numbers</label>
           <br />
           <input type="checkbox" id="symbols" name="symbols" />
-          <label for="numbers">Include Symbols</label>
+          <label for="symbols">Include Symbols</label>
           <br />
         </div>
 
         <div class="pw-strength-wrapper">
           <h4 class="strength-title">Strength</h4>
           <h5 class="dynamic-strength-title">Medium</h5>
+          <div>
+            <div id="" class="strength-indicator"></div>
+            <div class="strength-indicator"></div>
+            <div class="strength-indicator"></div>
+            <div class="strength-indicator"></div>
+          </div>
         </div>
-        <button class="generate-btn">
+        <button
+          id="generate-btn"
+          class="generate-btn"
+          aria-label="Generate password"
+        >
           Generate
           <img src="assets/images/icon-arrow-right.svg" alt="" />
         </button>

@@ -16,8 +16,8 @@ body {
   font-family: "JetBrains Mono", system-ui;
   background-color: var(--very-dark-grey);
   color: var(--almost-white);
-  display: flex;
 
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -25,9 +25,9 @@ body {
 }
 
 h1 {
-  color: var(--grey);
+  color: var(--almost-white);
   font-size: 1rem;
-  margin-bottom: 1em;
+  margin: 1em;
 }
 
 main {
@@ -35,6 +35,14 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.generated-password {
+  font-size: 1.2rem;
+}
+
+.generated-password.error {
+  color: var(--red);
 }
 
 .user-pw-section,
@@ -60,23 +68,19 @@ main {
 
 /* GENERATE PASSWORD SECTION */
 
-.pw-length-wrapper {
+.char-length-wrapper {
   display: flex;
   justify-content: space-between;
 }
 
-.min-max {
-  font-size: 0.8rem;
-}
-
-.pw-length {
+.char-number {
   color: var(--green);
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.5em;
 }
 
-.range {
+.char-range {
   width: 100%;
   margin-bottom: 1em;
 }
@@ -96,7 +100,7 @@ main {
 
 .strength-title {
   text-transform: uppercase;
-  color: var(--grey);
+  color: var(--almost-white);
   font-size: 0.8rem;
 }
 
