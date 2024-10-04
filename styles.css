@@ -60,10 +60,16 @@ main {
   margin-bottom: 1em;
 }
 
-.copy-btn {
-  border: none;
-  background-color: var(--dark-grey);
+.copy-icon {
   cursor: pointer;
+}
+
+.copy-icon path {
+  transition: fill 0.5s ease;
+}
+
+.copy-icon:hover path {
+  fill: #a4ffaf;
 }
 
 /* GENERATE PASSWORD SECTION */
@@ -90,7 +96,7 @@ main {
   margin: 0.8em 0;
 }
 
-.pw-strength-wrapper {
+.strength-container {
   display: flex;
   justify-content: space-between;
   background-color: var(--very-dark-grey);
@@ -102,6 +108,10 @@ main {
   text-transform: uppercase;
   color: var(--almost-white);
   font-size: 0.8rem;
+}
+
+.strength-img-meter {
+  height: 18px;
 }
 
 .dynamic-strength-title {
@@ -121,6 +131,7 @@ main {
   text-transform: uppercase;
   font-weight: 700;
   border: 2px solid transparent;
+  transition: all 0.5s ease;
   cursor: pointer;
 }
 
@@ -139,5 +150,9 @@ main {
   .generate-pw-section {
     min-width: 540px;
     padding: 2em;
+  }
+
+  .strength-img {
+    height: 20px;
   }
 }
