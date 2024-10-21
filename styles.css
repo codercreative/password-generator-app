@@ -89,6 +89,7 @@ main {
 .char-range {
   width: 100%;
   margin-bottom: 1em;
+  accent-color: #a4ffaf;
 }
 
 .checkbox-wrapper input {

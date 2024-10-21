@@ -11,8 +11,6 @@ This is a solution to the [Password generator app challenge on Frontend Mentor](
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
@@ -141,16 +139,15 @@ I learned that you can use 0-9 or \d to check for digits in a string:
 /\d/.test(password)
 ```
 
-### Continued development
+Using accent-color to change the color of the range slider:
 
-TBD...
-
-### Useful resources
-
-TBD...
-
-- [Example resource 1](https://www.example.com)
-- [Example resource 2](https://www.example.com)
+```css
+.char-range {
+  width: 100%;
+  margin-bottom: 1em;
+  accent-color: #a4ffaf;
+}
+```
 
 ## Author
 

@@ -51,14 +51,15 @@ function calculatePassWordStrength(password) {
   const strengthImgMeter = document.getElementById("strength-img-meter");
 
   const isTooWeak = password.length > 0 && password.length <= 4;
-  const isWeak = password.length > 4 && password.length < 8;
+  const isWeak = password.length > 4 && password.length <= 6;
   const isMedium =
-    password.length >= 8 && /[0-9]/.test(password) && /[a-zA-Z]/.test(password);
+    password.length > 6 && /[0-9]/.test(password) && /[a-zA-Z]/.test(password);
   const isStrong =
-    password.length >= 12 &&
-    /[0-9]/.test(password) &&
-    /[a-z]/.test(password) &&
-    /[A-Z]/.test(password);
+    (password.length >= 10 &&
+      /[a-z]/.test(password) &&
+      /[A-Z]/.test(password) &&
+      /[0-9]/.test(password)) ||
+    /[\W_]/.test(password);
 
   if (!password.length) {
     strengthImgMeter.src = "assets/images/empty.png";
@@ -76,4 +77,5 @@ function calculatePassWordStrength(password) {
     strengthImgMeter.src = "assets/images/strong.png";
     strengthImgMeter.alt = "Password strength is strong";
   }
+  console.log("isStrong:", isStrong);
 }
