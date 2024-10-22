@@ -12,7 +12,6 @@ This is a solution to the [Password generator app challenge on Frontend Mentor](
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -28,12 +27,12 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![Design preview for the Password Generator](./assets/images/screenshot.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Solution URL](https://github.com/codercreative/password-generator-app)
+- [Live Site URL](https://password-generator-chris.netlify.app/)
 
 ## My process
 
@@ -64,7 +63,7 @@ Some of the various tasks/problems I had to work through when building the app:
 
 **Visually Represent Password Strength**
 
-- Add strength indicators to visually represent the strength of the generated password (research)
+- Add strength indicators to visually represent the strength of the generated password
 
 **Error Message**
 
@@ -82,7 +81,7 @@ Some of the various tasks/problems I had to work through when building the app:
 
 **Test for Various User Scenarios**
 
-**Create a Reset Button?**
+**Add a reset button even though it is not part of the Figma design**
 
 ### Built with
 
@@ -93,13 +92,12 @@ Some of the various tasks/problems I had to work through when building the app:
 
 ### What I learned
 
-Adding an event listener and adjust the number of characters dynamically based on user's range input.
+Adjust the number of characters dynamically based on user's range input.
 
 ```js
-//Making the slider work (min 4 chars and max 20 chars)
-//pwLength is the element displaying the password length and rangeInput is the slider input
-rangeInput.addEventListener("input", function () {
-  pwLength.textContent = rangeInput.value;
+// SHOWING THE VALUE OF THE SLIDER RANGE
+charRange.addEventListener("input", function () {
+  charNumber.textContent = charRange.value;
 });
 ```
 
@@ -149,10 +147,35 @@ Using accent-color to change the color of the range slider:
 }
 ```
 
+In order to copy the password to the clipboard, I used the Clipboard API:
+
+```js
+function copyPassword() {
+  const passwordText = generatedPassword.textContent;
+  console.log(passwordText);
+
+  if (passwordText === "P4$5W0rD!" || passwordText === "Tick at least 1 box") {
+    return;
+  }
+
+  navigator.clipboard
+    .writeText(passwordText)
+    .then(() => {
+      const originalText = generatedPassword.textContent;
+      generatedPassword.textContent = "Copied!";
+      generatedPassword.classList.add("copied");
+
+      setTimeout(() => {
+        generatedPassword.textContent = originalText;
+        generatedPassword.classList.remove("copied");
+      }, 2000);
+    })
+    .catch((err) => {
+      console.log("Failed to copy: ", err);
+    });
+}
+```
+
 ## Author
 
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-
-## Acknowledgments
-
-TBD...
+- [Frontend Mentor](https://www.frontendmentor.io/profile/codercreative)

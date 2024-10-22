@@ -45,6 +45,10 @@ main {
   color: var(--red);
 }
 
+.generated-password.copied {
+  color: #a4ffaf;
+}
+
 .user-pw-section,
 .generate-pw-section {
   min-width: 300px;
@@ -89,12 +93,17 @@ main {
 .char-range {
   width: 100%;
   margin-bottom: 1em;
-  accent-color: #a4ffaf;
+  accent-color: var(--green);
+  cursor: pointer;
 }
 
 .checkbox-wrapper input {
   font-size: 1rem;
   margin: 0.8em 0;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--green);
 }
 
 .strength-container {
