@@ -22,6 +22,16 @@ charRange.addEventListener("input", function () {
 
 // GENERATING THE PASSWORD
 generateBtn.addEventListener("click", generatePassword);
+// if the user plays around with the buttons and range then the code will still function as expected with these eventlisteners added to the js code:
+uppercaseCheckbox.addEventListener("change", generatePassword);
+
+lowercaseCheckbox.addEventListener("change", generatePassword);
+
+numbersCheckbox.addEventListener("change", generatePassword);
+
+symbolsCheckbox.addEventListener("change", generatePassword);
+
+charRange.addEventListener("input", generatePassword);
 
 function generatePassword() {
   let password = "";
@@ -36,6 +46,16 @@ function generatePassword() {
   if (chars.length === 0) {
     generatedPassword.textContent = "Tick at least 1 box";
     generatedPassword.classList.add("error");
+    setTimeout(() => {
+      generatedPassword.textContent = "...and choose length";
+
+      setTimeout(() => {
+        generatedPassword.textContent = "P4$5W0rD!";
+        generatedPassword.classList.remove("error");
+        generatePassword.style.color = "#e7e6eb";
+      }, 2000);
+    }, 2000);
+
     return;
   }
 
@@ -53,25 +73,22 @@ function generatePassword() {
 function calculatePassWordStrength(password) {
   const strengthImgMeter = document.getElementById("strength-img-meter");
 
+  const length = password.length;
+
   const hasUpperCase = /[A-Z]/.test(password);
   const hasLowerCase = /[a-z]/.test(password);
   const hasNumbers = /[0-9]/.test(password);
   const hasSymbols = /[!@#$%&*?]/.test(password);
 
-  const isTooWeak = password.length <= 4 && password.length > 0;
-  const isWeak = password.length <= 8 && !isTooWeak;
+  const isTooWeak = length > 0 && length <= 4;
+  const isWeak = length > 4 && length <= 8;
   const isMedium =
-    password.length < 14 &&
-    password.length > 8 &&
-    hasLowerCase &&
-    hasNumbers &&
-    (hasUpperCase || hasSymbols);
+    length > 8 &&
+    length < 14 &&
+    hasUpperCase + hasLowerCase + hasNumbers + hasSymbols >= 2;
 
   const isStrong =
-    password.length >= 14 &&
-    hasLowerCase &&
-    hasNumbers &&
-    (hasUpperCase || hasSymbols);
+    length >= 14 && hasUpperCase + hasLowerCase + hasNumbers + hasSymbols >= 3;
 
   if (!password.length) {
     strengthImgMeter.src = "assets/images/empty.png";

@@ -46,31 +46,35 @@
             <label for="char-range">Character Length</label>
           </h3>
 
-          <h4 id="char-number" class="char-number">4</h4>
+          <h4 id="char-number" class="char-number">0</h4>
         </div>
         <input
           type="range"
           id="char-range"
           class="char-range"
           name="char-range"
-          value="4"
-          min="1"
+          value="0"
+          min="0"
           max="20"
         />
 
         <div class="checkbox-wrapper">
-          <input type="checkbox" id="uppercase" name="uppercase" />
-          <label for="uppercase">Include Uppercase Letters </label>
-          <br />
-          <input type="checkbox" id="lowercase" name="lowercase" />
-          <label for="lowercase">Include Lowercase Letters</label>
-          <br />
-          <input type="checkbox" id="numbers" name="numbers" />
-          <label for="numbers">Include Numbers</label>
-          <br />
-          <input type="checkbox" id="symbols" name="symbols" />
-          <label for="symbols">Include Symbols</label>
-          <br />
+          <p>
+            <input type="checkbox" id="uppercase" name="include-char" />
+            <label for="uppercase">Include Uppercase Letters </label>
+          </p>
+          <p>
+            <input type="checkbox" id="lowercase" name="include-char" />
+            <label for="lowercase">Include Lowercase Letters</label>
+          </p>
+          <p>
+            <input type="checkbox" id="numbers" name="include-char" />
+            <label for="numbers">Include Numbers</label>
+          </p>
+          <p>
+            <input type="checkbox" id="symbols" name="include-char" />
+            <label for="symbols">Include Symbols</label>
+          </p>
         </div>
 
         <div class="strength-container">

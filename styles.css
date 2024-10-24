@@ -10,6 +10,8 @@
   --grey: hsl(251, 9%, 53%);
   --dark-grey: hsl(248, 10%, 15%);
   --very-dark-grey: hsl(248, 15%, 11%);
+
+  --green: rgb(163, 255, 174);
 }
 
 body {
@@ -41,14 +43,6 @@ main {
   font-size: 1.2rem;
 }
 
-.generated-password.error {
-  color: var(--red);
-}
-
-.generated-password.copied {
-  color: #a4ffaf;
-}
-
 .user-pw-section,
 .generate-pw-section {
   min-width: 300px;
@@ -57,7 +51,6 @@ main {
 }
 
 /* USER PASSWORD SECTION */
-
 .user-pw-section {
   display: flex;
   justify-content: space-between;
@@ -76,8 +69,7 @@ main {
   fill: #a4ffaf;
 }
 
-/* GENERATE PASSWORD SECTION */
-
+/* GENERATE PASSWORD SECTION -- EXCEPT CHECKBOXES (see checkbox section separately below*/
 .char-length-wrapper {
   display: flex;
   justify-content: space-between;
@@ -95,15 +87,6 @@ main {
   margin-bottom: 1em;
   accent-color: var(--green);
   cursor: pointer;
-}
-
-.checkbox-wrapper input {
-  font-size: 1rem;
-  margin: 0.8em 0;
-}
-
-input[type="checkbox"]:checked {
-  background-color: var(--green);
 }
 
 .strength-container {
@@ -155,6 +138,77 @@ input[type="checkbox"]:checked {
   border: 2px solid var(--green);
 }
 
+/* CHECKBOX HANDLING  */
+.checkbox-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+[type="checkbox"] + label {
+  position: relative;
+  cursor: pointer;
+  padding-left: 30px;
+  /* labels are by default inline elements */
+  display: inline-block;
+  color: var(--almost-white);
+  line-height: 25px;
+}
+
+/* the box around the checkmark  */
+[type="checkbox"] + label::before {
+  content: " ";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--almost-white);
+  top: 50%;
+  left: 2px;
+  background-color: transparent;
+  transform: translateY(-50%);
+  transition: all 0.1s ease;
+}
+
+[type="checkbox"] + label:hover::before {
+  border: 2px solid var(--green);
+  background-color: rgba(163, 255, 174, 0.1);
+}
+
+/* the checkmark itself  */
+[type="checkbox"]:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-image: url("assets/images/icon-check.svg");
+  background-size: cover;
+  height: 14px;
+  width: 14px;
+  background-color: var(--green);
+  border: 2px solid var(--green);
+}
+
+/* STATE HANDLING FOR JAVASCRIPT INTERACTIVITY */
+/* Error state for generated password */
+.generated-password.error {
+  color: var(--red);
+  /* font-size: 1.1rem; */
+}
+
+/* Copied state for generated password */
+.generated-password.copied {
+  color: #a4ffaf;
+}
+
+/* MEDIA QUERY */
 @media (width >= 768px) {
   .user-pw-section,
   .generate-pw-section {

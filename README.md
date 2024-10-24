@@ -11,6 +11,7 @@ This is a solution to the [Password generator app challenge on Frontend Mentor](
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
+  - [Helpful Links](#helpful-links)
 - [Author](#author)
 
 ## Overview
@@ -40,18 +41,10 @@ Some of the various tasks/problems I had to work through when building the app:
 
 **CSS**
 
+- Change copy icon to green on hover
 - Make range indicator green
 - Create green checkboxes when user selects them
-- Ensure that all hover and focus states for the interactive elements are created
-- Change copy icon to white on hover
-- Add green and very dark grey css for range
-- Add hover state for range
-- Swap bullets for icon check
-- Check that the arrow arrow svg inside the generate button is coded correctly
-- Check accessibility throughout
-- Include more margin/padding
-- How to show the weak/medium/strong in css/js
-- Add ease on generate button
+- Add transition effect on hover states
 
 **Character Length**
 
@@ -81,7 +74,9 @@ Some of the various tasks/problems I had to work through when building the app:
 
 **Test for Various User Scenarios**
 
-**Add a reset button even though it is not part of the Figma design**
+**Later Update**
+
+- Add a reset button even though it is not part of the Figma design
 
 ### Built with
 
@@ -175,6 +170,100 @@ function copyPassword() {
     });
 }
 ```
+
+To determine the strength of the medium and strong password, I found this great solution: `&& hasUpperCase + hasLowerCase + hasNumbers + hasSymbols >= 2` and `&& hasUpperCase + hasLowerCase + hasNumbers + hasSymbols >= 3`
+
+```js
+const isTooWeak = length > 0 && length <= 4;
+const isWeak = length > 4 && length <= 8;
+const isMedium =
+  length > 8 &&
+  length < 14 &&
+  hasUpperCase + hasLowerCase + hasNumbers + hasSymbols >= 2;
+
+const isStrong =
+  length >= 14 && hasUpperCase + hasLowerCase + hasNumbers + hasSymbols >= 3;
+```
+
+The checkmark boxes was a valuable learning experience:
+
+```css
+/* CHECKBOX HANDLING  */
+.checkbox-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+[type="checkbox"] + label {
+  position: relative;
+  cursor: pointer;
+  padding-left: 30px;
+  /* labels are by default inline elements */
+  display: inline-block;
+  color: var(--almost-white);
+  line-height: 25px;
+}
+
+/* the box around the checkmark  */
+[type="checkbox"] + label::before {
+  content: " ";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--almost-white);
+  top: 50%;
+  left: 2px;
+  background-color: transparent;
+  transform: translateY(-50%);
+  transition: all 0.1s ease;
+}
+
+[type="checkbox"] + label:hover::before {
+  border: 2px solid var(--green);
+  background-color: rgba(163, 255, 174, 0.1);
+}
+
+/* the checkmark itself  */
+[type="checkbox"]:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-image: url("assets/images/icon-check.svg");
+  background-size: cover;
+  height: 14px;
+  width: 14px;
+  background-color: var(--green);
+  border: 2px solid var(--green);
+}
+```
+
+Creating eventlisteners for the checkbox to ensure that the functionality of the app still works, if the user plays around with the range and the checkboxes:
+
+```js
+generatePassword);
+
+lowercaseCheckbox.addEventListener("change", generatePassword);
+
+numbersCheckbox.addEventListener("change", generatePassword);
+
+symbolsCheckbox.addEventListener("change", generatePassword);
+
+charRange.addEventListener("input", generatePassword);
+```
+
+## Helpful Links
+
+[Custom Checkbox Pure CSS Tutorial - Andrew Wilson - YouTube](https://www.youtube.com/watch?v=NfW_5Y1RZQ4)
 
 ## Author
 
