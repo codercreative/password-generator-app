@@ -35,27 +35,18 @@ charRange.addEventListener("input", generatePassword);
 
 function generatePassword() {
   let password = "";
-  let length = charRange.value;
+  let length = parseInt(charRange.value);
   let chars = "";
 
-  chars += uppercaseCheckbox.checked ? uppercaseLetters : "";
-  chars += lowercaseCheckbox.checked ? lowercaseLetters : "";
-  chars += numbersCheckbox.checked ? numbers : "";
-  chars += symbolsCheckbox.checked ? symbols : "";
+  if (uppercaseCheckbox.checked) chars += uppercaseLetters;
+  if (lowercaseCheckbox.checked) chars += lowercaseLetters;
+  if (numbersCheckbox.checked) chars += numbers;
+  if (symbolsCheckbox.checked) chars += symbols;
 
   if (chars.length === 0) {
     generatedPassword.textContent = "Tick at least 1 box";
     generatedPassword.classList.add("error");
-    setTimeout(() => {
-      generatedPassword.textContent = "...and choose length";
-
-      setTimeout(() => {
-        generatedPassword.textContent = "P4$5W0rD!";
-        generatedPassword.classList.remove("error");
-        generatePassword.style.color = "#e7e6eb";
-      }, 2000);
-    }, 2000);
-
+    handleErrorMessage();
     return;
   }
 
@@ -69,6 +60,19 @@ function generatePassword() {
   calculatePassWordStrength(password);
 }
 
+// HELPER FUNCTION FOR ERROR MESSAGE
+function handleErrorMessage() {
+  setTimeout(() => {
+    generatedPassword.textContent = "...and choose length";
+    generatedPassword.classList.add("error");
+
+    setTimeout(() => {
+      generatedPassword.textContent = "P4$5W0rD!";
+      generatedPassword.classList.remove("error");
+    }, 2000);
+  }, 2000);
+}
+
 // CALCULATE PASSWORD STRENGTH
 function calculatePassWordStrength(password) {
   const strengthImgMeter = document.getElementById("strength-img-meter");
@@ -80,29 +84,44 @@ function calculatePassWordStrength(password) {
   const hasNumbers = /[0-9]/.test(password);
   const hasSymbols = /[!@#$%&*?]/.test(password);
 
-  const isTooWeak = length > 0 && length <= 4;
-  const isWeak = length > 4 && length <= 8;
-  const isMedium =
-    length > 8 &&
-    length < 14 &&
-    hasUpperCase + hasLowerCase + hasNumbers + hasSymbols >= 2;
+  let typeCount = 0;
 
-  const isStrong =
-    length >= 14 && hasUpperCase + hasLowerCase + hasNumbers + hasSymbols >= 3;
+  if (hasUpperCase) typeCount++;
+  if (hasLowerCase) typeCount++;
+  if (hasNumbers) typeCount++;
+  if (hasSymbols) typeCount++;
 
-  if (!password.length) {
+  console.log("Password Length:", length); // Debugging
+  console.log("Type Count:", typeCount); // Debugging
+  console.log("Password:", password); // Debugging
+
+  let strengthLevel = "";
+
+  if (length === 0) {
+    strengthLevel = "empty";
+  } else if (length <= 4) {
+    strengthLevel = "too-weak";
+  } else if (length <= 8) {
+    strengthLevel = typeCount >= 2 ? "weak" : "too-weak";
+  } else if (length <= 13) {
+    strengthLevel = typeCount >= 2 ? "medium" : "weak";
+  } else if (length > 13) {
+    strengthLevel = typeCount >= 3 ? "strong" : "medium";
+  }
+
+  if (strengthLevel === "empty") {
     strengthImgMeter.src = "assets/images/empty.png";
     strengthImgMeter.alt = "No password entered";
-  } else if (isTooWeak) {
+  } else if (strengthLevel === "too-weak") {
     strengthImgMeter.src = "assets/images/too-weak.png";
     strengthImgMeter.alt = "Password strength is too weak";
-  } else if (isWeak) {
+  } else if (strengthLevel === "weak") {
     strengthImgMeter.src = "assets/images/weak.png";
     strengthImgMeter.alt = "Password strength is weak";
-  } else if (isMedium) {
+  } else if (strengthLevel === "medium") {
     strengthImgMeter.src = "assets/images/medium.png";
     strengthImgMeter.alt = "Password strength is medium";
-  } else if (isStrong) {
+  } else if (strengthLevel === "strong") {
     strengthImgMeter.src = "assets/images/strong.png";
     strengthImgMeter.alt = "Password strength is strong";
   }
