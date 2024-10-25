@@ -43,10 +43,13 @@ function generatePassword() {
   if (numbersCheckbox.checked) chars += numbers;
   if (symbolsCheckbox.checked) chars += symbols;
 
-  if (chars.length === 0) {
-    generatedPassword.textContent = "Tick at least 1 box";
+  if (!chars) {
+    generatedPassword.textContent = "Select at least one option";
     generatedPassword.classList.add("error");
-    handleErrorMessage();
+    setTimeout(() => {
+      generatedPassword.textContent = "P4$5W0rD!";
+      generatedPassword.classList.remove("error");
+    }, 1500);
     return;
   }
 
@@ -58,19 +61,6 @@ function generatePassword() {
   generatedPassword.textContent = password;
 
   calculatePassWordStrength(password);
-}
-
-// HELPER FUNCTION FOR ERROR MESSAGE
-function handleErrorMessage() {
-  setTimeout(() => {
-    generatedPassword.textContent = "...and choose length";
-    generatedPassword.classList.add("error");
-
-    setTimeout(() => {
-      generatedPassword.textContent = "P4$5W0rD!";
-      generatedPassword.classList.remove("error");
-    }, 2000);
-  }, 2000);
 }
 
 // CALCULATE PASSWORD STRENGTH
@@ -90,10 +80,6 @@ function calculatePassWordStrength(password) {
   if (hasLowerCase) typeCount++;
   if (hasNumbers) typeCount++;
   if (hasSymbols) typeCount++;
-
-  console.log("Password Length:", length); // Debugging
-  console.log("Type Count:", typeCount); // Debugging
-  console.log("Password:", password); // Debugging
 
   let strengthLevel = "";
 
@@ -132,7 +118,6 @@ copyIcon.addEventListener("click", copyPassword);
 
 function copyPassword() {
   const passwordText = generatedPassword.textContent;
-  console.log(passwordText);
 
   if (passwordText === "P4$5W0rD!" || passwordText === "Tick at least 1 box") {
     return;
