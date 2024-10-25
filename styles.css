@@ -126,6 +126,7 @@ main {
   border: 2px solid transparent;
   transition: all 0.5s ease;
   cursor: pointer;
+  color: var(--very-dark-grey);
 }
 
 .generate-btn img {
