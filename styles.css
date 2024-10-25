@@ -200,7 +200,7 @@ main {
 /* Error state for generated password */
 .generated-password.error {
   color: var(--red);
-  /* font-size: 1.1rem; */
+  font-size: 0.9rem;
 }
 
 /* Copied state for generated password */
